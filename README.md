@@ -133,6 +133,7 @@ TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 �
 
 ▶ 캐릭터 이동 & 전투 시스템 (player.cs)
 
+FPS 형태 캐릭터 이동 및 조준, 발사, 애니메이션 제어 포함한 전투 구현
 GetInput() – 키보드 입력 수집 (Horizontal, Vertical)  
 Aim() – 마우스 회전값 기반 TPS 시점 조정 및 카메라 각도 제한  
 Move() – 입력 방향 + 카메라 방향 기반 이동 벡터 생성  
@@ -147,6 +148,7 @@ ShootProjectile() – Raycast로 명중 지점 계산 후 총알 생성 및 방�
 ---
 
 ▶ 총알 처리 로직 (Bullet.cs)
+총알의 수명 및 충돌 판정과 데미지 적용 로직 구현
 
 Start() – 플레이어의 CharacterStats로부터 공격력 연동  
 FixedUpdate() – 일정 시간 경과 후 총알 자동 제거  
@@ -171,6 +173,7 @@ healthRegenTimer – 일정 시간마다 체력 자동 회복
 
 ▶ 아이템 시스템 (Item.cs, GameItem.cs)
 
+충돌 기반 효과 발동 및 지속 시간 조절 구조 설계
 OnTriggerEnter() – 충돌 시 아이템 효과 자동 발동  
 ApplyEffect() – ID 기반으로 효과 분기 처리  
 효과는 Coroutine을 통해 일정 시간 후 자동 복구
@@ -208,7 +211,7 @@ TextMeshPro, Slider 등을 통한 실시간 UI 출력
 버튼 클릭 시 씬 전환, 게임 종료, 키 가이드 토글 등 구현
 
 ✅ 전투 성과가 즉각 UI에 반영되는 구조  
-✅ 기능별 분리된 UI 구조로 유지보수 용이
+✅ 기능별 분리된 UI 구조
 
 ---
 
