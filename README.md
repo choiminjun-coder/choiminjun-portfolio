@@ -26,6 +26,8 @@
 
 --- 
 
+
+
 ### 🔹 퍼즐 게임 (팀 프로젝트, 외부 개발자 2인 협업)  
 [🔗 GitHub Repository](https://github.com/dreamerschoiminjun/puzzle-game)  
 ⏱ 진행 기간: 2024.03.01 ~ 2024.10.31  
@@ -111,6 +113,8 @@ TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 �
 - 실제 게임 플레이와 상호작용하는 물리 기반 폭발 이펙트 구현
 <br><br>
 ---
+
+
 
 ### 🔹 FPS 미니게임 (개인 프로젝트)  
 [🔗 GitHub Repository](https://github.com/dreamerschoiminjun/fps-minigame)  
@@ -233,6 +237,8 @@ TextMeshPro, Slider 등을 통한 실시간 UI 출력
 - 모든 시스템을 클래스 단위로 분리하여 확장성과 유지보수성 확보
 <br><br>
 ---
+
+
 
 ### 🔹 TPS 로그라이크 장르 게임 (디자이너 1인 협업)  
 ⏱ 진행 기간: 2022.09.20 ~ 2025.03.01  
