@@ -254,6 +254,3 @@ TextMeshPro, Slider 등을 통한 실시간 UI 출력
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/> 
     </a> 
 </p>
-
-<h3 align="center">🧰 사용 도구</h3>
-<!-- 추후 업데이트 가능 -->
