@@ -33,16 +33,20 @@
 ---
 
 ### 🔷 🎮 프로젝트 개요
-- **장르**: 퍼즐 + 액션  
-- **참여 인원**: 외부 개발자 2인 팀  
-- **역할**: 캐릭터 제어 시스템, 퍼즐 색상 로직, UI 연동, 컬러 카운터 시스템, 엔딩 연출 담당  
-- **주요 구현 요소**: FSM 기반 이동, 컬러 기반 스테이지 클리어 구조, 폭발 연출
+
+장르: 퍼즐 + 액션  
+참여 인원: 외부 개발자 2인 팀  
+역할: 캐릭터 제어 시스템, 퍼즐 색상 로직, UI 연동, 컬러 카운터 시스템, 엔딩 연출 담당  
+주요 구현 요소: FSM 기반 이동, 컬러 기반 스테이지 클리어 구조, 폭발 연출
 
 ---
 
 ### 🔧 주요 시스템 및 코드 설계
 
-#### ▶ 캐릭터 이동 & 조작 (`NewPlayer.cs`)
+#### ▶ 캐릭터 이동 & 조작 (NewPlayer.cs)
+
+TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 설계
+
 - `Aim()` – 마우스 회전값을 기반으로 카메라 각도와 캐릭터 방향 제어  
 - `Move()` – 입력 방향에 따라 이동 벡터 계산 및 속도 적용  
 - `Jump()` – 점프 입력 처리, 착지 여부는 `OnCollisionEnter()`에서 복구  
@@ -53,9 +57,12 @@
 
 ---
 
-#### ▶ 컬러 체인지 퍼즐 시스템 (`ColorChanger.cs`)
-- `InvokeRepeating()` – 일정 시간 간격으로 색상 순환 (`ChangeColor()` 호출)  
-- `ChangeColor()` – 색상 배열을 순회하며 MeshRenderer의 `material.color` 변경  
+#### ▶ 컬러 체인지 퍼즐 시스템 (ColorChanger.cs)
+
+색상이 주기적으로 변화하며, 퍼즐 조건에 사용될 수 있도록 설계된 상태 머신 구성
+
+- `InvokeRepeating()` – 일정 시간 간격으로 색상 순환 메서드 반복 실행  
+- `ChangeColor()` – 색상 배열을 순회하며 오브젝트 색상 변경  
 - `GetCurrentColor()` – 현재 색상을 외부에서 참조할 수 있도록 반환
 
 ✅ 색상 상태를 외부에서 읽을 수 있는 getter 제공으로 구조화된 의존성 설계  
@@ -63,39 +70,46 @@
 
 ---
 
-#### ▶ 퍼즐 해석 & 스테이지 클리어 조건 (`ColorCounter.cs`)
-- `OnTriggerEnter()` – 플레이어가 특정 색상 오브젝트에 접근 시 UI 활성화 및 현재 태그 저장  
-- `Update()` – 입력 키(E, R)에 따라 `IncrementColorCount()` 및 `ResetCounts()` 호출  
-- `IncrementColorCount()` – 태그와 현재 색상이 일치하면 해당 색상 카운트 증가  
-- `ResetCounts()` – 조건 초과 또는 R키 입력 시 모든 색상 카운트 초기화  
-- `GetCountDisplayText()` – 현재 색상 카운트를 문자열로 반환해 UI에 표시  
-- `CheckStageClearCondition()` – 색상별 카운트가 조건과 일치할 경우 스테이지 클리어 처리
+#### ▶ 퍼즐 해석 & 스테이지 클리어 조건 (ColorCounter.cs)
+
+색상과 태그 일치 여부 기반으로 퍼즐 카운트를 계산하고 UI 및 클리어 조건 연동
+
+- `OnTriggerEnter()` – 플레이어가 색상 블록에 접근 시 UI 활성화 및 태그 저장  
+- `Update()` – E/R 키 입력 처리 및 조건에 따라 카운트 증가/초기화 실행  
+- `IncrementColorCount()` – 현재 색상과 태그가 일치할 때 해당 색상 카운트 증가  
+- `ResetCounts()` – 모든 색상 카운트를 초기화  
+- `GetCountDisplayText()` – UI에 표시할 색상 카운트 문자열 반환  
+- `CheckStageClearCondition()` – 조건 충족 시 클리어 처리, 초과 시 리셋
 
 ✅ 색상 태그/값 비교 기반의 퍼즐 논리 구현, UI와 연동되어 직관적 피드백 제공  
 ✅ 클리어 조건 및 예외(초과) 상황을 함수로 분리하여 관리 용이성 확보
 
 ---
 
-#### ▶ 엔딩 폭발 이펙트 및 시각 효과 (`ExplosionEffect.cs`)
-- `OnCollisionEnter()` – 특정 태그("letter")와 충돌 시 `Explode()` 호출  
+#### ▶ 엔딩 폭발 이펙트 및 시각 효과 (ExplosionEffect.cs)
+
+물리 연동 기반 폭발 효과 구현으로 연출과 게임 플레이를 연결
+
+- `OnCollisionEnter()` – 충돌 감지 시 폭발 연출 메서드 호출  
 - `Explode()`  
-  - `Instantiate()` – 지정된 위치에 폭발 이펙트 생성  
-  - `transform.localScale *=` – 스케일 배수 적용  
-  - `Physics.OverlapSphere()` – 주변 Rigidbody 탐색  
-  - `AddExplosionForce()` – 감지된 Rigidbody에 물리 폭발력 적용  
-- `OnDrawGizmos()` – 개발 중 폭발 범위를 시각적으로 디버깅 가능
+  - `Instantiate()` – 폭발 이펙트 생성  
+  - `transform.localScale *=` – 이펙트 스케일 확대  
+  - `Physics.OverlapSphere()` – 범위 내 오브젝트 탐색  
+  - `AddExplosionForce()` – 물리 반응 적용  
+- `OnDrawGizmos()` – 디버깅용 폭발 범위 시각화
 
 ✅ 단순 연출이 아닌 실제 물리 반응과 연동된 연출 시스템 구성  
 ✅ 가시성 확보를 위한 개발용 Gizmo 처리도 병행하여 디버깅 편의성 향상
 
 ---
 
-### ✨ 핵심 역량 요약
-- Unity 구조 설계 경험: 기능별로 클래스를 분리하고 목적에 맞게 구성  
-- 실전 API 활용 능력: `InvokeRepeating()`, `Animator`, `OverlapSphere()` 등 다양한 기능을 상황에 맞게 적용  
-- 협업과 유지보수를 고려한 개발 습관: getter/조건분기/UI 연결 모두 명확하게 설계
+### ✨ 핵심 기술 요약
 
----
+- FSM(상태 기반) 구조와 실시간 입력 반영을 조합한 자유 이동/조작 시스템  
+- 실시간 상태 순환 퍼즐 오브젝트와 사용자 입력 상호작용을 통한 논리 기반 퍼즐 처리  
+- UI 실시간 연동 + 색상 비교 기반 클리어 로직 설계  
+- 실제 게임 플레이와 상호작용하는 물리 기반 폭발 이펙트 구현
+
 
 ### 🔹 FPS 미니게임 (개인 프로젝트)  
 [🔗 GitHub Repository](https://github.com/dreamerschoiminjun/fps-minigame)  
