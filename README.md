@@ -21,16 +21,23 @@
 <br><br>
 
 <div align="center"> 
-    <h2 style="border-bottom: 1px solid #21262d; color: #c9d1d9;"> 🎮 진행 프로젝트 </h2> 
+    <h2 style="border-bottom: 1px solid #21262d; color: #c9d1d9;"> 🎮 진행 프로젝트 </h2> # 🎮 퍼즐 게임 (팀 프로젝트, 외부 개발자 2인 협업)
+
+🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/puzzle-game)  
+⏱ 진행 기간: 2024.03.01 ~ 2024.10.31  
+장르: 퍼즐  
+참여 인원: 외부 개발자 2인 팀  
+역할: 캐릭터 제어 시스템, 퍼즐 색상 로직, UI 연동, 컬러 카운터 시스템, 엔딩 연출 담당  
 </div>
 
 --- 
 
 
-### 🔹 퍼즐 게임 (팀 프로젝트, 외부 개발자 2인 협업)  
-[🔗 GitHub Repository](https://github.com/dreamerschoiminjun/puzzle-game)  
+# 🎮 퍼즐 게임 (팀 프로젝트, 외부 개발자 2인 협업)
+
+🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/puzzle-game)  
 ⏱ 진행 기간: 2024.03.01 ~ 2024.10.31  
-장르: 퍼즐
+장르: 퍼즐  
 참여 인원: 외부 개발자 2인 팀  
 역할: 캐릭터 제어 시스템, 퍼즐 색상 로직, UI 연동, 컬러 카운터 시스템, 엔딩 연출 담당  
 주요 구현 요소: FSM 기반 이동, 컬러 기반 스테이지 클리어 구조, 폭발 연출
@@ -113,16 +120,14 @@ TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 �
 
 ---
 
-### 🔹 FPS 미니게임 (개인 프로젝트)  
-[🔗 GitHub Repository](https://github.com/dreamerschoiminjun/fps-minigame)  
-⏱ 진행 기간: 2024.09.01 ~ 2024.09.30
+# 🎮 FPS 미니게임 (개인 프로젝트)
 
-장르: 1인칭 FPS + 서바이벌
+🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/fps-minigame)  
+⏱ 진행 기간: 2024.09.01 ~ 2024.09.30  
+장르: 1인칭 FPS + 서바이벌  
+참여 인원: 단독  
 
-참여 인원: 단독
-
-기획/프로그래밍/시스템 구성을 모두 단독으로 구현
-
+기획/프로그래밍/시스템 구성을 모두 단독으로 구현  
 플레이어는 총기를 활용해 적을 처치하며 생존 시간을 늘려 점수를 획득하고, 주변에서 랜덤하게 등장하는 아이템으로 능력을 강화할 수 있음
 
 ---
