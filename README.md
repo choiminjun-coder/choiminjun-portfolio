@@ -160,9 +160,9 @@ Start() – 플레이어의 CharacterStats로부터 공격력 연동
 FixedUpdate() – 일정 시간 경과 후 총알 자동 제거  
 OnTriggerEnter() – 적과 충돌 시 데미지 적용 및 파괴
 
-✅ 총알 방향은 Raycast 기반 정확 타겟팅 적용
-✅ 총기 발사 애니메이션과 스탯 반영 공격력 처리
-✅ 충돌 대상별 데미지 처리 분기 구성 (EnemyStats / AlienStats)
+✅ 총알 방향은 Raycast 기반 정확 타겟팅 적용  
+✅ 총기 발사 애니메이션과 스탯 반영 공격력 처리  
+✅ 충돌 대상별 데미지 처리 분기 구성 (EnemyStats / AlienStats)  
 
 ---
 
