@@ -20,6 +20,13 @@
 
 <br><br>
 
+---
+
+
+<br><br>
+
+---
+
 <div align="center"> 
     <h2 style="border-bottom: 1px solid #21262d; color: #c9d1d9;"> 🎮 진행 프로젝트 </h2> # 🎮 퍼즐 게임 (팀 프로젝트, 외부 개발자 2인 협업)
 
