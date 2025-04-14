@@ -406,6 +406,8 @@ StartTimer(), StopTimer(), ResetTimer() - 시간 제어
 
 - **C#**  
   Unity 기반 게임 시스템 전반을 구성하는 주 프로그래밍 언어로 사용
+  
+  ---
 
 ## 🧰 사용 기술 요약
 
