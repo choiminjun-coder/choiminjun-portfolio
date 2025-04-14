@@ -411,8 +411,10 @@ StartTimer(), StopTimer(), ResetTimer() - 시간 제어
     </a> 
 </p>
 ---
+
 🧰 사용 기술 요약  
 - Unity (FSM, Animator, Coroutine, Raycast, NavMesh 등 주요 기능 활용)  
 - C# 기반 모듈화 구조 설계 및 클래스 단위 시스템 분리  
-- GitHub 기반 버전 관리 및 협업 경험  
+- GitHub 기반 버전 관리 및 협업 경험
+- 
 ---
