@@ -50,140 +50,141 @@
 
 ### 🎮 캐릭터 시스템
 
-**캐릭터 스탯 관리(CharacterStats.cs)**
-Start() - 초기 체력/재화 설정  
-AddToInventory() - 인벤토리 아이템 추가  
-Update() - 주기적 체력 회복  
-RegenerateHealth() - 체력 자동 회복 로직  
+#### ▶ 캐릭터 스탯 관리 (CharacterStats.cs)  
+- Start() – 초기 체력/재화 설정  
+- AddToInventory() – 인벤토리 아이템 추가  
+- Update() – 주기적 체력 회복  
+- RegenerateHealth() – 체력 자동 회복 로직  
 
 ✅ 체력, 공격력, 속도, 스킬 쿨타임 등 전투 및 이동에 필요한 핵심 스탯 관리  
-✅ 아이템, 상태이상, 재화, 치명타 등 다양한 속성 통합 구조  
+✅ 아이템, 상태이상, 재화, 치명타 등 다양한 속성 통합 구조
 
-**TPS 방식의 캐릭터 조작(Player.cs)**
-Start() - 컴포넌트 초기화 및 상태 설정  
-Update() - 입력 및 상태 제어 루프  
-Move(), Aim(), Jump(), Dodge() - TPS 조작 로직  
-HandleWeaponSwitch() - 무기 전환 (근접 ↔ 원거리)  
+#### ▶ TPS 방식의 캐릭터 조작 (Player.cs)  
+- Start() – 컴포넌트 초기화 및 상태 설정  
+- Update() – 입력 및 상태 제어 루프  
+- Move(), Aim(), Jump(), Dodge() – TPS 조작 로직  
+- HandleWeaponSwitch() – 무기 전환 (근접 ↔ 원거리)  
 
 ✅ TPS 시점 기준 이동, 회피, 점프, 조준, 무기 전환  
-✅ 근/원거리 무기 방식에 따라 입력 처리 및 애니메이션 연동  
+✅ 근/원거리 무기 방식에 따라 입력 처리 및 애니메이션 연동
 
-**입력 및 조작 시스템(KeyBindingManager.cs)**
-Start() - 기본 키 설정 및 UI 초기화  
-StartRebinding() - UI 클릭 시 키 변경 대기  
-WaitForKeyInput() - 입력 수신 및 중복 체크  
-SaveKey(), LoadKey() - PlayerPrefs 연동  
+#### ▶ 입력 및 조작 시스템 (KeyBindingManager.cs)  
+- Start() – 기본 키 설정 및 UI 초기화  
+- StartRebinding() – UI 클릭 시 키 변경 대기  
+- WaitForKeyInput() – 입력 수신 및 중복 체크  
+- SaveKey(), LoadKey() – PlayerPrefs 연동  
 
 ✅ 사용자 지정 키 매핑 지원, 실시간 변경 및 저장 가능  
-✅ 기능별 키 설정 구조화 + UI 연동  
+✅ 기능별 키 설정 구조화 + UI 연동
 
 ---
 
 ### 🗡️ 전투 시스템
 
-** 근접 공격 시스템 (MeleeAttackModule.cs)**  
-HandleCombo() - 3타 콤보 및 연계 공격 처리  
-TriggerCombo() - 콤보별 애니메이션 처리  
-CancelMeleeAttack(), ResetMeleeCombo() - 공격 상태 초기화  
+#### ▶ 근접 공격 시스템 (MeleeAttackModule.cs)  
+- HandleCombo() – 3타 콤보 및 연계 공격 처리  
+- TriggerCombo() – 콤보별 애니메이션 처리  
+- CancelMeleeAttack(), ResetMeleeCombo() – 공격 상태 초기화  
 
 ✅ 3타 콤보 공격 구조  
 ✅ 보조공격/스킬 연계 가능  
-✅ 애니메이션 트리거와 타격 판정 분리  
+✅ 애니메이션 트리거와 타격 판정 분리
 
-** 원거리 공격 시스템(RangedAttackModule.cs)**  
-HandleRangedAttack() - 발사체 기반 일반 공격  
-HandleSkill() - 스킬 발사체 전환 및 스탯 적용  
-ShootProjectile() - Raycast 기반 조준 및 발사  
+#### ▶ 원거리 공격 시스템 (RangedAttackModule.cs)  
+- HandleRangedAttack() – 발사체 기반 일반 공격  
+- HandleSkill() – 스킬 발사체 전환 및 스탯 적용  
+- ShootProjectile() – Raycast 기반 조준 및 발사  
 
 ✅ 발사체 기반 원거리 공격 및 스킬 모드 전환  
-✅ 스탯 기반 발사력, 쿨타임, 독속성 연계  
+✅ 스탯 기반 발사력, 쿨타임, 독속성 연계
 
-** 근접 무기 충돌 감지 시스템 (PlayerWeaponTrigger.cs)**  
-EnableHit(), DisableHit() - 애니메이션 이벤트 기반 타격 제어  
-OnTriggerEnter() - 충돌 시 적 체력 감소  
+#### ▶ 근접 무기 충돌 감지 시스템 (PlayerWeaponTrigger.cs)  
+- EnableHit(), DisableHit() – 애니메이션 이벤트 기반 타격 제어  
+- OnTriggerEnter() – 충돌 시 적 체력 감소  
 
 ✅ 근접 무기와 적 충돌 감지  
-✅ 애니메이션 타이밍에 맞춘 타격 처리  
+✅ 애니메이션 타이밍에 맞춘 타격 처리
 
 ---
 
-###  👾 적 시스템
+### 👾 적 시스템
 
-**적 추적 및 공격 AI 시스템(enemymove.cs)**  
-Update() - 거리 체크 및 추적/공격 상태 관리  
-ChasePlayer() - NavMesh 기반 이동  
-PerformAttack() - 공격 애니메이션 + 데미지 처리  
-HandleDeath() - 사망 애니메이션, 드랍, 제거  
+#### ▶ 적 추적 및 공격 AI 시스템 (enemymove.cs)  
+- Update() – 거리 체크 및 추적/공격 상태 관리  
+- ChasePlayer() – NavMesh 기반 이동  
+- PerformAttack() – 공격 애니메이션 + 데미지 처리  
+- HandleDeath() – 사망 애니메이션, 드랍, 제거  
 
 ✅ NavMesh를 활용한 자동 추적 및 공격  
-✅ 사망 후 드랍 및 제거까지 연동  
+✅ 사망 후 드랍 및 제거까지 연동
 
-**적 상태 및 스탯 관리(EnemyStats.cs)**  
-Start() - 초기 체력 설정  
-상태 필드 - 체력, 공격력, 상태이상 누적 및 지속 시간  
+#### ▶ 적 상태 및 스탯 관리 (EnemyStats.cs)  
+- Start() – 초기 체력 설정  
+- 상태 필드 – 체력, 공격력, 상태이상 누적 및 지속 시간  
 
 ✅ 적의 체력/공격력/속도와 상태이상 누적 수치 관리  
-✅ 상태이상 지속시간 및 Tick 주기 별도 설정 가능  
+✅ 상태이상 지속시간 및 Tick 주기 별도 설정 가능
 
-**상태이상 적용 시스템(Element.cs)**  
-CheckAndApplyStatusEffects() - 누적 수치 100 도달 시 상태 적용  
-HandleStatusEffects() - 상태이상별 Tick 데미지 처리  
-ApplyXXXStatus(), ApplyXXXDamage() - 효과별 처리  
+#### ▶ 상태이상 적용 시스템 (Element.cs)  
+- CheckAndApplyStatusEffects() – 누적 수치 100 도달 시 상태 적용  
+- HandleStatusEffects() – 상태이상별 Tick 데미지 처리  
+- ApplyXXXStatus(), ApplyXXXDamage() – 효과별 처리  
 
 ✅ 화상, 감전, 중독, 출혈, 빙결 등 상태이상 시스템  
-✅ 이펙트 프리팹과 데미지 로직 통합  
+✅ 이펙트 프리팹과 데미지 로직 통합
 
-**적 사망 및 드랍 시스템(Enemy.cs)**  
-DropItem() - 확률 기반 아이템 드랍  
-DropItemOfType() - 드랍 아이템 구성  
+#### ▶ 적 사망 및 드랍 시스템 (Enemy.cs)  
+- DropItem() – 확률 기반 아이템 드랍  
+- DropItemOfType() – 드랍 아이템 구성  
 
 ✅ 확률 기반 아이템 드랍 구조  
-✅ 캐릭터 스탯 기반 드랍률 보정 지원  
+✅ 캐릭터 스탯 기반 드랍률 보정 지원
 
-**몬스터 처치 통계 시스템(KillMonster.cs)**  
-InitializeMonsterDictionary() - 스테이지 별 몬스터 초기화  
-IncreaseMonsterKillCount() - 처치 수 기록  
+#### ▶ 몬스터 처치 통계 시스템 (KillMonster.cs)  
+- InitializeMonsterDictionary() – 스테이지 별 몬스터 초기화  
+- IncreaseMonsterKillCount() – 처치 수 기록  
 
-✅ 스테이지/종류별 몬스터 처치 수 기록  
+✅ 스테이지/종류별 몬스터 처치 수 기록
 
 ---
 
 ### 💎 아이템 시스템
 
-**아이템 효과 처리(GameItem.cs)**  
-ApplyEffect() - 아이템 ID에 따라 스탯 변화 적용  
-ApplyItemXXEffect() - 스탯 변경 로직 정의  
+#### ▶ 아이템 효과 처리 (GameItem.cs)  
+- ApplyEffect() – 아이템 ID에 따라 스탯 변화 적용  
+- ApplyItemXXEffect() – 스탯 변경 로직 정의  
 
 ✅ 최대 200개까지 확장 가능한 스탯 기반 효과 처리 구조  
-✅ 쿨타임 감소, 체력 증가, 속도 증가 등 효과 다양  
+✅ 쿨타임 감소, 체력 증가, 속도 증가 등 효과 다양
 
-**아이템 등록 및 초기화 (CommonItem.cs)**  
-Awake() - 초기화 및 기본 아이템 등록  
-ScriptableObject로 등록된 아이템 생성  
+#### ▶ 아이템 등록 및 초기화 (CommonItem.cs)  
+- Awake() – 초기화 및 기본 아이템 등록  
+- ScriptableObject로 등록된 아이템 생성  
 
 ✅ 기본 아이템 리스트 관리  
-✅ 공통 아이템 정보를 ScriptableObject로 분리  
+✅ 공통 아이템 정보를 ScriptableObject로 분리
 
 ---
 
 ### 🧭 UI 시스템
 
-**체력 UI 시스템(HealthBarController.cs, UpdateHealthText.cs)**  
-Update() - 체력 비율 및 수치 표시 업데이트  
-초록 바 위치, 길이 조절  
+#### ▶ 체력 UI 시스템 (HealthBarController.cs, UpdateHealthText.cs)  
+- Update() – 체력 비율 및 수치 표시 업데이트  
+- 초록 바 위치, 길이 조절  
 
-✅ 체력 비율 기반 UI + 수치 텍스트 표시  
+✅ 체력 비율 기반 UI + 수치 텍스트 표시
 
-**자원 UI 시스템(UpdateMoney.cs, UpdateSpirit.cs)**  
-UpdateMoneyText(), UpdateSpiritText() - 골드/영혼 실시간 출력  
+#### ▶ 자원 UI 시스템 (UpdateMoney.cs, UpdateSpirit.cs)  
+- UpdateMoneyText(), UpdateSpiritText() – 골드/영혼 실시간 출력  
 
-✅ 골드 및 영혼 수치 실시간 표시  
+✅ 골드 및 영혼 수치 실시간 표시
 
-**플레이 타이머 시스템(Timer.cs)**  
-Update() - 시간 측정 및 UI 반영  
-StartTimer(), StopTimer(), ResetTimer() - 시간 제어  
+#### ▶ 플레이 타이머 시스템 (Timer.cs)  
+- Update() – 시간 측정 및 UI 반영  
+- StartTimer(), StopTimer(), ResetTimer() – 시간 제어  
 
-✅ 게임 플레이 시간 표시 및 리셋/정지 기능 포함  
+✅ 게임 플레이 시간 표시 및 리셋/정지 기능 포함
+
 
 ---
 
@@ -224,7 +225,7 @@ StartTimer(), StopTimer(), ResetTimer() - 시간 제어
 
 ### 🔧 주요 시스템 및 코드 설계
 
-#### ▶ 🕹️ 캐릭터 이동 시스템 (NewPlayer.cs)
+#### ▶ 🕹️ 캐릭터 이동 시스템  (NewPlayer.cs)
 
 TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 설계
 
