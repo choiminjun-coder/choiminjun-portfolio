@@ -47,7 +47,7 @@
 
 ## 🔧 주요 시스템 및 코드 설계
 
-![TPS 시스템 다이어그램](tps.jpg)
+![TPS 시스템 다이어그램](assets/tps.jpg)
 
 ### 🎮 캐릭터 시스템
 
@@ -226,7 +226,7 @@
 
 ### 🔧 주요 시스템 및 코드 설계
 
-![퍼즐 시스템 다이어그램](puzzle.jpg)
+![퍼즐 시스템 다이어그램](assets/puzzle.jpg)
 
 #### ▶ 🕹️ 캐릭터 이동 시스템  (NewPlayer.cs)
 
@@ -327,7 +327,7 @@ TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 �
 
 ### 🔧 주요 시스템 및 코드 설계
 
-![FPS 시스템 다이어그램](fps.jpg)
+![FPS 시스템 다이어그램](assets/fps.jpg)
 
 #### ▶ 🕹️ 캐릭터 시스템 (player.cs)  
 - GetInput() – 키보드 입력 수집 (Horizontal, Vertical)  
