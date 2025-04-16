@@ -322,76 +322,65 @@ TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 �
 
 ### 🔧 주요 시스템 및 코드 설계
 
-▶ 🕹️ 캐릭터 시스템 (player.cs)
-
-FPS 형태 캐릭터 이동 및 조준, 발사, 애니메이션 제어 포함한 전투 구현  
-GetInput() – 키보드 입력 수집 (Horizontal, Vertical)  
-Aim() – 마우스 회전값 기반 TPS 시점 조정 및 카메라 각도 제한  
-Move() – 입력 방향 + 카메라 방향 기반 이동 벡터 생성  
-Jump() – 점프 입력 시 AddForce()로 물리 기반 점프 적용  
-
+#### ▶ 🕹️ 캐릭터 시스템 (player.cs)  
+- GetInput() – 키보드 입력 수집 (Horizontal, Vertical)  
+- Aim() – 마우스 회전값 기반 TPS 시점 조정 및 카메라 각도 제한  
+- Move() – 입력 방향 + 카메라 방향 기반 이동 벡터 생성  
+- Jump() – 점프 입력 시 AddForce()로 물리 기반 점프 적용  
 
 ✅ 총알 방향은 Raycast 기반 정확 타겟팅 적용  
 ✅ 총기 발사 애니메이션과 스탯 반영 공격력 처리  
-✅ 충돌 대상별 데미지 처리 분기 구성 (EnemyStats / AlienStats)  
-
+✅ 충돌 대상별 데미지 처리 분기 구성 (EnemyStats / AlienStats)
 
 ---
 
-▶ 🔫 전투 시스템 (Bullet.cs)  
-
-총알의 수명 및 충돌 판정과 데미지 적용 로직 구현
-BulletAttack() – 마우스 입력 시 발사 애니메이션, 쿨타임 체크, 총알 발사  
-ShootProjectile() – Raycast로 명중 지점 계산 후 총알 생성 및 방향 지정
-Start() – 플레이어의 CharacterStats로부터 공격력 연동  
-FixedUpdate() – 일정 시간 경과 후 총알 자동 제거  
-OnTriggerEnter() – 적과 충돌 시 데미지 적용 및 파괴
+#### ▶ 🔫 전투 시스템 (Bullet.cs)  
+- BulletAttack() – 마우스 입력 시 발사 애니메이션, 쿨타임 체크, 총알 발사  
+- ShootProjectile() – Raycast로 명중 지점 계산 후 총알 생성 및 방향 지정  
+- Start() – 플레이어의 CharacterStats로부터 공격력 연동  
+- FixedUpdate() – 일정 시간 경과 후 총알 자동 제거  
+- OnTriggerEnter() – 적과 충돌 시 데미지 적용 및 파괴  
 
 ✅ 총알 방향은 Raycast 기반 정확 타겟팅 적용  
 ✅ 총기 발사 애니메이션과 스탯 반영 공격력 처리  
-✅ 충돌 대상별 데미지 처리 분기 구성 (EnemyStats / AlienStats)  
+✅ 충돌 대상별 데미지 처리 분기 구성 (EnemyStats / AlienStats)
 
 ---
 
-▶ 	👾 적 시스템 (EnemySpawn.cs, EnemyStats.cs, Beam.cs)
-
-일정 시간마다 플레이어 주변 랜덤 위치에 적 등장  
-EnemyStats – 데미지 처리 및 사망 시 점수 증가  
-Beam.cs – VolumetricLine 기반 시각 효과 + Raycast로 지속 데미지
+#### ▶ 👾 적 시스템 (EnemySpawn.cs, EnemyStats.cs, Beam.cs)  
+- 일정 시간마다 플레이어 주변 랜덤 위치에 적 등장  
+- EnemyStats – 데미지 처리 및 사망 시 점수 증가  
+- Beam.cs – VolumetricLine 기반 시각 효과 + Raycast로 지속 데미지  
 
 ✅ 사망 시 즉시 랜덤 위치로 리스폰 → 끊김 없는 서바이벌 흐름 유지  
 ✅ 시각 이펙트 + 피해를 주는 광선형 공격 구현  
-✅ 점수 시스템과 연계된 적 처치 로직 포함  
-
+✅ 점수 시스템과 연계된 적 처치 로직 포함
 
 ---
 
-▶ 💎 아이템 시스템 (Item.cs, GameItem.cs)
-
-충돌 기반 효과 발동 및 지속 시간 조절 구조 설계  
-OnTriggerEnter() – 충돌 시 아이템 효과 자동 발동  
-ApplyEffect() – ID 기반으로 효과 분기 처리  
-효과는 Coroutine을 통해 일정 시간 후 자동 복구
+#### ▶ 💎 아이템 시스템 (Item.cs, GameItem.cs)  
+- OnTriggerEnter() – 충돌 시 아이템 효과 자동 발동  
+- ApplyEffect() – ID 기반으로 효과 분기 처리  
+- 효과는 Coroutine을 통해 일정 시간 후 자동 복구  
 
 ✅ 7종 아이템 효과 (무적, 회복, 속도 증가, 공격력 강화 등)  
 ✅ 효과별 지속 시간, 복구 처리를 코루틴으로 구현  
-✅ 충돌만으로 발동되는 직관적 아이템 시스템  
-
+✅ 충돌만으로 발동되는 직관적 아이템 시스템
 
 ---
 
-▶ 🔊 UI 및 사운드 시스템 (Score.cs, UIManager.cs, ButtonActions.cs, mainstagebgm.cs, menubgm.cs, player.cs)
-
-생존 시간 및 적 처치 수 기반 점수 증가
-TextMeshPro, Slider 등을 통한 실시간 UI 출력
-버튼 클릭 시 씬 전환, 게임 종료, 키 가이드 토글 등 구현
-스테이지/메뉴에 따라 다른 BGM 재생
+#### ▶ 🔊 UI 및 사운드 시스템 (Score.cs, UIManager.cs, ButtonActions.cs, mainstagebgm.cs, menubgm.cs, player.cs)  
+- 생존 시간 및 적 처치 수 기반 점수 증가  
+- TextMeshPro, Slider 등을 통한 실시간 UI 출력  
+- 버튼 클릭 시 씬 전환, 게임 종료, 키 가이드 토글 등 구현  
+- 스테이지/메뉴에 따라 다른 BGM 재생  
 
 ✅ 전투 성과가 즉각 UI에 반영되는 구조  
 ✅ 기능별 분리된 UI 시스템으로 유지보수 용이  
-✅ 씬별 BGM 분리 + 총기 사운드를 통한 타격감 피드백 구현  
+✅ 씬별 BGM 분리 + 총기 사운드를 통한 타격감 피드백 구현
 
 ---
+
 
 ### ✨ 핵심 기술 요약
 
