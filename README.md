@@ -26,7 +26,7 @@
 # 1. 🎮 TPS 로그라이크 게임
 🔗 코딩파일 [GitHub Repository](https://github.com/choiminjun-coder/choiminjun-TPSscript)  
 
-▶️ 시연 영상 (https://www.youtube.com/watch?v=PqSt6WACUpI)
+▶️ 개발 영상 (https://www.youtube.com/watch?v=JgRZtCDci7s)
 
 ⏱ 진행 기간: 2022.09.20 ~ 2025.03.01  
 
