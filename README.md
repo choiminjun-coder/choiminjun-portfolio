@@ -305,7 +305,7 @@ TPS 스타일의 자유 이동 구현 및 애니메이션 상태 제어 분리 �
 # 3. 🔫 FPS 미니게임 (팀 프로젝트, 개발자 1인 협업)
 
 🔗 [GitHub Repository](https://github.com/dreamerschoiminjun/fps)  
-▶️ [시연 영상 (https://www.youtube.com/watch?v=PqSt6WACUpI))
+▶️ 시연 영상 (https://www.youtube.com/watch?v=PqSt6WACUpI)
 ⏱ 진행 기간: 2024.09.01 ~ 2024.09.30  
 
 장르: 1인칭 FPS + 서바이벌  
